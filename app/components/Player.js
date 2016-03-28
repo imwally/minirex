@@ -1,5 +1,6 @@
 var React = require('react');
 var AlbumArt = require('./AlbumArt');
+var TimeStats = require('./TimeStats');
 var Event = require('./Events');
 
 var Player = React.createClass({
@@ -7,8 +8,8 @@ var Player = React.createClass({
 	return {
 	    playIcon: 'glyphicon glyphicon-play',
 	    playing: false,
-	    duration: '',
-	    currentTime: '',
+	    duration: 0,
+	    currentTime: 0,
 	    tracks: [],
 	    trackNumber: 0,
 	    currentTrack: {},
@@ -21,7 +22,7 @@ var Player = React.createClass({
 	
 	Event.addListener('playTrack', this.playTrack);
 	this.audio.addEventListener('loadedmetadata', this.setDuration);
-	this.audio.addEventListener('timeupdate', this.updateTime);
+	this.audio.addEventListener('timeupdate', this.updateCurrentTime);
 	this.audio.addEventListener('ended', this.next);
 	this.audio.addEventListener('error', this.next);
     },
@@ -31,11 +32,15 @@ var Player = React.createClass({
     },
     
     setDuration: function() {
-	this.setState({duration: this.formatTime(this.audio.duration)});
+	this.setState({
+	    duration: this.formatTime(this.audio.duration)
+	});
     },
     
-    updateTime: function() {
-	this.setState({currentTime: this.formatTime(this.audio.currentTime)});
+    updateCurrentTime: function() {
+	this.setState({
+	    currentTime: this.formatTime(this.audio.currentTime)
+	});
     },
 
     formatTime: function(timeSeconds) {
@@ -82,6 +87,8 @@ var Player = React.createClass({
 	var trackNumber = this.state.trackNumber;
 	if (trackNumber != this.state.tracks.length-1) {
 	    this.playTrack(this.state.tracks, trackNumber+1);
+	} else {
+	    this.clearInfo();
 	}
     },
 
@@ -92,6 +99,16 @@ var Player = React.createClass({
 	} else {
 	    this.playTrack(this.state.tracks, 0);
 	}
+    },
+
+    clearInfo: function() {
+	this.pause();
+	this.setState({
+	    tracks: [],
+	    currentTrack: {},
+	    currentTime: 0,
+	    duration: 0,
+	})
     },
     
     render: function() {
@@ -110,10 +127,11 @@ var Player = React.createClass({
 		<AlbumArt path={this.state.currentTrack.Path} />
 		<b>{this.state.currentTrack.Title}</b><br/>
 		{this.state.currentTrack.Artist}<br/>
-		{this.state.currentTime} / {this.state.duration}
+		<TimeStats currentTime={this.state.currentTime}
+	                   duration={this.state.duration} />
 	        </div>
 		</div>
-	)
+	);
     }
 
 });
