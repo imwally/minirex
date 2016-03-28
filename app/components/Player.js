@@ -31,20 +31,21 @@ var Player = React.createClass({
     },
     
     setDuration: function() {
-	var minutes = Math.floor(this.audio.duration / 60);
-	var seconds = Math.floor(this.audio.duration - minutes * 60);
-	var fullTime = minutes+":"+seconds;
-	console.log(fullTime);
-	this.setState({duration: fullTime});
+	this.setState({duration: this.formatTime(this.audio.duration)});
     },
     
     updateTime: function() {
-	var minutes = Math.floor(this.audio.currentTime / 60);
-	var seconds = Math.floor(this.audio.currentTime - minutes * 60);
-	var fullTime = minutes+":"+seconds;
-	this.setState({currentTime: fullTime});
+	this.setState({currentTime: this.formatTime(this.audio.currentTime)});
     },
-   
+
+    formatTime: function(timeSeconds) {
+	var minutes = Math.floor(timeSeconds / 60);
+	var seconds = Math.floor(timeSeconds - minutes * 60);
+	var seconds = (seconds < 10 ? "0"+seconds : seconds);
+	var fullTime = minutes+":"+seconds;
+	return fullTime;
+    },
+
     playTrack: function(tracks, i) {
 	var track = tracks[i];
 	this.audio.src = 'http://127.0.0.1:8080/file/' + track.Path,
@@ -107,9 +108,9 @@ var Player = React.createClass({
 		</div>
 		<div id="player-info">
 		<AlbumArt path={this.state.currentTrack.Path} />
-		<b>{this.state.currentTrack.Title}</b>
-		<p>{this.state.currentTrack.Artist}</p>
-		<p>{this.state.currentTime} / {this.state.duration}</p>
+		<b>{this.state.currentTrack.Title}</b><br/>
+		{this.state.currentTrack.Artist}<br/>
+		{this.state.currentTime} / {this.state.duration}
 	        </div>
 		</div>
 	)
