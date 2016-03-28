@@ -1,0 +1,83 @@
+body {
+  background: #f7f7f7;
+  margin: 0;
+  padding: 0; }
+
+#header {
+  position: fixed;
+  top: 0;
+  background: #fff;
+  width: 100%;
+  border: 1px solid #eee;
+  z-index: 100; }
+  #header .button {
+    background: #fff;
+    cursor: pointer;
+    font-size: 24px;
+    padding: 20px;
+    border-right: 1px solid #eee;
+    float: left;
+    z-index: 100; }
+  #header .button:hover {
+    border-bottom: 3px solid #34495e;
+    color: #34495e;
+    padding-bottom: 17px; }
+
+#content {
+  margin-top: 120px; }
+
+#album-grid .album-box {
+  margin-bottom: 20px;
+  height: 280px; }
+#album-grid .album-artwork {
+  height: 200px;
+  overflow: hidden; }
+#album-grid .album-title {
+  white-space: nowrap;
+  padding: 10px 0px 0px 0px;
+  font-size: 18px;
+  overflow: hidden; }
+#album-grid .album-artist {
+  color: #999; }
+
+#player-info {
+  float: left;
+  padding: 5px 10px; }
+  #player-info .album-artwork {
+    height: 60px;
+    width: 60px;
+    margin: 0px 20px;
+    float: left; }
+
+.album-artwork img {
+  width: 100%; }
+
+.album-info {
+  overflow: hidden; }
+
+.album-info h2 {
+  white-space: nowrap; }
+
+.album-info p {
+  font-size: 24px;
+  margin-top: -10px;
+  color: #999; }
+
+.track-list {
+  border: 1px solid #eee;
+  background: #fff;
+  font-size: 14px;
+  white-space: nowrap;
+  overflow: hidden; }
+
+.track-item {
+  padding: 20px;
+  border-bottom: 1px solid #eee; }
+  .track-item a {
+    color: #000;
+    cursor: pointer; }
+  .track-item a:hover {
+    text-decoration: none;
+    color: #34495e; }
+
+/*# sourceMappingURL=style.css.map */
