@@ -16,7 +16,9 @@ var AlbumArt = React.createClass({
     render: function() {
 	var src = 'http://127.0.0.1:8080/artwork?track=' + this.props.path;
 	if (this.state.errored) {
-	    return null;
+	    return (
+		<div className="no-artwork">No Album Art</div>
+	    );
 	} else {
 	    return (
 		    <div className="album-artwork">
