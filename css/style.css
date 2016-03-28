@@ -23,14 +23,27 @@ body {
     color: #34495e;
     padding-bottom: 17px; }
 
+#player-info {
+  float: left;
+  padding: 5px 10px; }
+  #player-info .no-artwork {
+    height: 60px;
+    width: 60px;
+    margin-right: 10px;
+    float: left; }
+
 #content {
   margin-top: 120px; }
 
+#album-grid a:hover {
+  text-decoration: none; }
 #album-grid .album-box {
   margin-bottom: 20px;
-  height: 280px; }
+  min-height: 200px;
+  max-height: 350px; }
 #album-grid .album-artwork {
-  height: 200px;
+  min-height: 140px;
+  max-height: 300px;
   overflow: hidden; }
 #album-grid .album-title {
   white-space: nowrap;
@@ -40,28 +53,23 @@ body {
 #album-grid .album-artist {
   color: #999; }
 
-#player-info {
+.no-artwork {
   float: left;
-  padding: 5px 10px; }
-  #player-info .album-artwork {
-    height: 60px;
-    width: 60px;
-    margin: 0px 20px;
-    float: left; }
+  width: 100%;
+  height: 100%;
+  border: 1px solid #eee; }
 
 .album-artwork img {
   width: 100%; }
 
 .album-info {
   overflow: hidden; }
-
-.album-info h2 {
-  white-space: nowrap; }
-
-.album-info p {
-  font-size: 24px;
-  margin-top: -10px;
-  color: #999; }
+  .album-info h2 {
+    white-space: nowrap; }
+  .album-info p {
+    font-size: 24px;
+    margin-top: -10px;
+    color: #999; }
 
 .track-list {
   border: 1px solid #eee;
